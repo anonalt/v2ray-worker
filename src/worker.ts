@@ -51,4 +51,17 @@ export default {
     if (lcPath === "login") {
       if (request.method === "GET") return GetLogin(request, env);
       if (request.method === "POST") return PostLogin(request, env);
-      return new Resp
+      return new Response("Method not allowed", { status: 405 });
+    }
+
+    // Root panel
+    if (path === "") {
+      if (request.method === "GET") return GetPanel(request, env);
+      if (request.method === "POST") return PostPanel(request, env);
+      return new Response("Method not allowed", { status: 405 });
+    }
+
+    // Everything else: don't proxy, just 404 (prevents 1101 crashes on /favicon.ico etc.)
+    return new Response("Not found", { status: 404 });
+  },
+};
