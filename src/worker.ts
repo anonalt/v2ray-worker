@@ -1,3 +1,4 @@
+throw new Error("INIT REACHED");
 import { VlessOverWSHandler } from "./vless"
 import { TrojanOverWSHandler } from "./trojan"
 import { GetPanel, PostPanel } from "./panel"
